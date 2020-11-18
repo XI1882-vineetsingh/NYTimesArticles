@@ -23,7 +23,7 @@ class NYTimesSlowTest: XCTestCase {
     }
     
     // Asynchronous test: success fast, failure slow
-    func testValidCallToiTunesGetsHTTPStatusCode200() {
+    func testValidCallToNYTimesGetsHTTPStatusCode200() {
       // given
       let url = URL(string: EndPoint.popularArticles.url)
       // 1
@@ -50,7 +50,7 @@ class NYTimesSlowTest: XCTestCase {
     }
     
     // Asynchronous test: faster fail
-    func testCallToiTunesCompletes() {
+    func testCallToNYTimesCompletes() {
       // given
       let url = URL(string: EndPoint.popularArticles.url)
       // 1
