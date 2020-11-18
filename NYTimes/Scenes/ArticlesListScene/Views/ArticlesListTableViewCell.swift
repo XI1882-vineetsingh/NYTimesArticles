@@ -44,36 +44,35 @@ class ArticlesListTableViewCell: UITableViewCell {
                 
                 let imageUrl = metaData[0].url
                 
-                guard let url = URL(string: imageUrl)else{return}
-                
-                if let cachedImage = ArticlesViewModel.imageCache.object(forKey: imageUrl as NSString) {
-                    
+                if let cachedImage = imageUrl.returnImageCache(){
                     DispatchQueue.main.async {
                         self.articleImage.image = cachedImage
                     }
-                    
                 }
                 else{
                     
                     DispatchQueue.global().async {
-                        
+
                         do{
+                            
+                            guard let url = URL(string: imageUrl)else{return}
+                            
                             let imageData: Data = try Data(contentsOf: url,options: [])
                             guard let image: UIImage = UIImage(data: imageData)else{return}
                             DispatchQueue.main.async {
-                                
+
                                 ArticlesViewModel.imageCache.setObject(image, forKey: imageUrl as NSString)
                                 self.articleImage.image = image
-                                
+
                             }
                         }catch{
                             print(error)
                         }
-                        
+
                     }
                     
+                    
                 }
-                
                 
             }
             

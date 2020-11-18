@@ -49,6 +49,16 @@
                ReferencedContainer = "container:NYTimes.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5199C4ED256510D300822412"
+               BuildableName = "NYTimesSlowTest.xctest"
+               BlueprintName = "NYTimesSlowTest"
+               ReferencedContainer = "container:NYTimes.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

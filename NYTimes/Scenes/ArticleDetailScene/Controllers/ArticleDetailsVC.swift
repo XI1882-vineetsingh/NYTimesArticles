@@ -14,6 +14,7 @@ class ArticleDetailsVC: UIViewController {
     @IBOutlet weak var articleDescLbl: UILabel!
     @IBOutlet weak var articlePublishedDateLbl: UILabel!
     @IBOutlet weak var calendarImage: UIImageView!
+    @IBOutlet weak var articleImage: UIImageView!
     
     var articleModel: Article?
     
@@ -29,6 +30,8 @@ class ArticleDetailsVC: UIViewController {
         
         calendarImage.tintColor = UIColor.darkGray
         
+        articleImage.layer.cornerRadius = articleImage.frame.width / 2
+        
         guard let article = articleModel else {
             return
         }
@@ -37,6 +40,24 @@ class ArticleDetailsVC: UIViewController {
         articleAuthorLbl.text = article.byline
         articleDescLbl.text = article.abstract
         articlePublishedDateLbl.text = article.publishedDate
+        
+        //Image Setup
+        if article.media.count > 0{
+            
+            let metaData = article.media[0].mediaMetadata
+            
+            if metaData.count > 0{
+                
+                let imageUrl = metaData[0].url
+                
+                if let cachedImage = imageUrl.returnImageCache(){
+                    DispatchQueue.main.async {
+                        self.articleImage.image = cachedImage
+                    }
+                }
+            }
+            
+        }
         
         
     }
